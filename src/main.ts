@@ -6,8 +6,11 @@ import "./style.css";
 const ELEMENT = document.querySelector(".board") as HTMLDivElement;
 
 const INPUT = document.querySelector("input") as HTMLInputElement;
+const WORDS = document.querySelector(".words") as HTMLDivElement;
 
 const board = new Board(ELEMENT);
+
+const prevWords: string[] = [];
 
 INPUT.addEventListener("input", () => {
     let words = board.getWordPositions(INPUT.value);
@@ -15,13 +18,20 @@ INPUT.addEventListener("input", () => {
 });
 
 INPUT.addEventListener("change", async () => {
-    if (board.getWordPositions(INPUT.value).length === 0) {
-        alert("Bad Word");
+    const word = INPUT.value;
+    if (board.getWordPositions(word).length === 0 || prevWords.includes(word)) {
         return;
     }
 
-    let wordIsValid = await checkWord(INPUT.value);
-    if (wordIsValid) alert("YAY");
+    let wordIsValid = await checkWord(word);
+    if (wordIsValid) {
+        prevWords.push(word);
+        const wordEl = document.createElement("div");
+        wordEl.textContent = word;
+        WORDS.appendChild(wordEl);
+    }
+
+    INPUT.value = "";
 });
 
 async function checkWord(word: string): Promise<boolean> {

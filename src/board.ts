@@ -60,13 +60,6 @@ export class Board {
             div.textContent = char;
             elem.appendChild(div);
         }
-
-        console.log(this.board);
-        let g = this.getCharPositions("g");
-        console.log(g);
-        console.log(this.getCharPositionsNextTo("a", g[0], []));
-
-        console.log(this.getWordPositions("turmoit"));
     }
 
     getCharPositions(char: string): Index[] {
