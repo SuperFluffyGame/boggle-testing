@@ -1,0 +1,33 @@
+:root {
+    font-family: Inter, Avenir, Helvetica, Arial, sans-serif;
+    color: rgba(255, 255, 255, 0.87);
+    background-color: #242424;
+}
+body,
+html {
+    margin: 0;
+    padding: 0;
+}
+
+.board {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    width: 25rem;
+    aspect-ratio: 1;
+
+    border: 0.2rem solid red;
+
+    font-size: 4rem;
+    text-transform: uppercase;
+    user-select: none;
+}
+.board > div {
+    display: grid;
+    place-items: center;
+
+    border: 1px solid gray;
+}
+
+.highlight {
+    background-color: darkblue;
+}
